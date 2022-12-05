@@ -1,0 +1,152 @@
+{%extends 'base.html'%}
+{%load static%}
+{%block section%}
+<div class="px-6 py-20 md:px-12 bg-gray-50 text-gray-800 text-center lg:text-left">
+      <div class="container mx-auto xl:px-32">
+        <div class="grid lg:grid-cols-2 gap-12 flex items-center">
+          <div class="mt-12 lg:mt-0">
+            <h1 class="text-5xl md:text-6xl xl:text-7xl font-bold tracking-tight mb-12">Paste Repo  <br /><span class="text-blue-600">Link to Clone</span></h1>
+            <div class="flex justify-center">
+                  <form method="post" action="#" >
+                    {%csrf_token%}
+                      <div class="mb-3 xl:w-96">
+                        <div class="input-group relative flex flex-wrap items-stretch w-full mb-4">
+                          <div class="mb-2">
+                            {{form.name.label}}:
+                            {{form.name}}
+                          </div>
+                          <div class="mb-2">
+                            {{form.repo_link.label}}:
+                            {{form.repo_link}}
+                          </div>
+                          <button type="submit" class="btn inline-block px-6 py-2 border-2 border-blue-600 text-blue-600 font-medium text-xs leading-tight uppercase rounded hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out" type="button" id="button-addon3">Save</button>
+                        </div>
+                      </div>
+                  </form>
+            </div>
+          </div>
+          <div class="mb-12 lg:mb-0">
+            <img
+              src="https://www.howtogeek.com/wp-content/uploads/2022/08/github_hero_2.jpg?width=1198&trim=1,1&bg-color=000&pad=1,1"
+              class="w-full rounded-lg shadow-lg"
+              alt="GitHub"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+<div class="flex flex-col">
+  <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+    <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
+      <div class="overflow-hidden">
+        <table class="min-w-full .bg-gray-800">
+          <thead class="border-b">
+            <tr>
+              <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                Repo Name
+              </th>
+              <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                Repo Link
+              </th>
+              <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                Status
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+              {%for obj in object_list%}
+            <tr class="border-b">
+
+              <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                <h2>{{obj.name|capfirst}}</h2>
+              </td>
+
+              <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                <h2>{{obj.repo_link|capfirst}}</h2>
+              </td>
+
+              <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                <h2 id='{{obj.id}}'>... </h2>
+              </td>
+
+              <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+
+                  {%csrf_token%}
+                <button style="font-size:10px;color: white;" type="submit" name="{{ obj.id }}" value="{{ obj.id }}" class="syncin inline-block px-6 pt-2.5 pb-2 bg-blue-600 text-white font-medium text-xs leading-normal uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out flex align-center">
+                <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="download"
+                  class="w-3 mr-2" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                  <path fill="currentColor"
+                    d="M216 0h80c13.3 0 24 10.7 24 24v168h87.7c17.8 0 26.7 21.5 14.1 34.1L269.7 378.3c-7.5 7.5-19.8 7.5-27.3 0L90.1 226.1c-12.6-12.6-3.7-34.1 14.1-34.1H192V24c0-13.3 10.7-24 24-24zm296 376v112c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24V376c0-13.3 10.7-24 24-24h146.7l49 49c20.1 20.1 52.5 20.1 72.6 0l49-49H488c13.3 0 24 10.7 24 24zm-124 88c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20zm64 0c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20z">
+                  </path>
+                </svg>
+                Clone
+                </button>
+              </td>
+            </tr>
+              {%empty%}
+              <tr class="border-b">
+              <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                <h2>
+              <h1>Nothing to display yet, Add a repo link above</h1></h2>
+              </td>
+              <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+
+              </td>
+            </tr>
+              {%endfor%}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+// AJAX CALL
+function getStatus(taskID, syncID) {
+  $.ajax({
+    url: `/task/${syncID}/${taskID}`,
+    method: 'GET'
+  })
+  .done((res) => {
+    const html =`<td><img src="{%static 'Pinwheel.gif' %}" style="width:50%"  alt="loading"/><span class="lead">${res.task_status}</span></td>
+    `
+    console.log(res.sync_id);
+    $('#'+syncID).html(html);
+    const taskStatus = res.task_status;
+    const syncId = res.sync_id;
+    if (taskStatus === 'SUCCESS'){
+    const result =`<td>${res.task_result}</td>`
+    $('#'+syncID).html(result);
+    console.log('doned');
+    }
+    if (taskStatus === 'SUCCESS' || taskStatus === 'FAILURE') return false;
+    setTimeout(function() {
+      getStatus(res.task_id, res.sync_id);
+    }, 1000);
+
+  })
+  .fail((err) => {
+    console.log(err)
+  });
+}
+
+$('.syncin').click(function(){
+    $.ajax({
+             type: "POST",
+             url: "{%url 'gitsync'%}",
+             data: {'content_id': $(this).attr('name'),'operation':'gitsync','csrfmiddlewaretoken': '{{ csrf_token }}'},
+             dataType: "json",
+        })
+        .done((res) => {
+          getStatus(res.task_id, res.sync_id)
+        })
+        .fail((err) => {
+        console.log(err);
+  });
+
+  })
+
+
+</script>
+{%endblock section%}
