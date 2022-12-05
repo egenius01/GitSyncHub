@@ -1,1 +1,1 @@
-python manage.py migrate && gunicorn GitSync.wsgi
+web: python manage.py migrate && gunicorn GitSync.wsgi
