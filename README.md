@@ -15,31 +15,22 @@ To use this app, you will need:
 
 1. Clone the repository:
 
-git clone https://github.com/your_username/gitsynchub.git
+`git clone https://github.com/your_username/gitsynchub.git`
 
 
 2. Install the required packages:
 
-pip install -r requirements.txt
-
-markdown
-Copy code
+`pip install -r requirements.txt`
 
 3. Run the migrations:
 
-python manage.py migrate
-
-markdown
-Copy code
+`python manage.py migrate`
 
 4. Start the development server:
 
-python manage.py runserver
+`python manage.py runserver`
 
-php
-Copy code
-
-5. Access the app in your web browser at http://localhost:8000/.
+5. Access the app in your web browser at `http://localhost:8000/.`
 
 ## Usage
 
@@ -52,10 +43,7 @@ Copy code
 
 To clone the repository at https://github.com/octocat/hello-world and save its JSON data to an SQL database, enter the following URL in the input field:
 
-https://github.com/octocat/hello-world.git
-
-yaml
-Copy code
+`https://github.com/octocat/hello-world.git`
 
 ## Contributing
 
