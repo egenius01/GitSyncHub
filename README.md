@@ -2,6 +2,15 @@
 
 This Django app allows you to clone a GitHub repository and save its JSON data to an SQL database Asynchronously using celery.
 
+ScreenShots:
+
+![gitsync1](https://user-images.githubusercontent.com/32688387/225042349-a17778ad-e7a7-4076-91f1-8670965c00f5.png)
+![gitsync-1](https://user-images.githubusercontent.com/32688387/225042410-25a0c307-bdb1-495d-a2c5-081ba2aa6f7b.png)
+![gitsync2](https://user-images.githubusercontent.com/32688387/225042537-9a6e89b6-5afa-411b-9143-abddf90deaab.png)
+![gitsync3](https://user-images.githubusercontent.com/32688387/225042553-a88ad31f-1fe3-4c3c-bead-307ecb189f2e.png)
+![gitsync4](https://user-images.githubusercontent.com/32688387/225042554-14ece648-adc8-4d3e-ae7f-1ebb4fe94f06.png)
+
+
 ## Requirements
 
 To use this app, you will need:
