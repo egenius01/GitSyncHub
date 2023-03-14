@@ -1,6 +1,6 @@
 # Django App: Save GitHub JSON to SQL Database
 
-This Django app allows you to clone a GitHub repository and save its JSON data to an SQL database.
+This Django app allows you to clone a GitHub repository and save its JSON data to an SQL database Asynchronously using celery.
 
 ## Requirements
 
