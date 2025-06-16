@@ -1,8 +1,50 @@
-# Django App: Save GitHub JSON to SQL Database
 
-This Django app allows you to clone a GitHub repository and save its JSON data to an SQL database Asynchronously using celery.
+# GitSync Hub
 
-ScreenShots:
+A Django app that asynchronously clones GitHub repositories and stores their JSON metadata in a PostgreSQL database using Celery.
+
+## 🚀 Features
+
+- Clone public GitHub repositories using their URL
+- Parse and store metadata as structured JSON
+- Asynchronous task handling with Celery
+- Persistent storage in PostgreSQL
+- Easily extendable for analytics, syncing intervals, or GitHub webhooks
+
+## 🔧 Tech Stack
+
+- Django
+- Celery
+- PostgreSQL
+- GitHub API
+- Docker (optional for containerization)
+
+## 📦 Setup Instructions
+
+1. Clone the repo:
+```bash
+git clone https://github.com/egenius01/GitSyncHub.git
+cd GitSyncHub
+```
+
+2. Create a virtual environment and activate it.
+
+3. Install dependencies:
+```bash
+pip install -r requirements.txt
+```
+
+5. Run the server:
+```bash
+python manage.py runserver
+```
+
+6. Start Celery worker:
+```bash
+celery -A project_name worker --loglevel=info
+```
+
+## 📸 Screenshots
 
 ![gitsync1](https://user-images.githubusercontent.com/32688387/225042349-a17778ad-e7a7-4076-91f1-8670965c00f5.png)
 ![gitsync-1](https://user-images.githubusercontent.com/32688387/225042410-25a0c307-bdb1-495d-a2c5-081ba2aa6f7b.png)
@@ -10,56 +52,19 @@ ScreenShots:
 ![gitsync3](https://user-images.githubusercontent.com/32688387/225042553-a88ad31f-1fe3-4c3c-bead-307ecb189f2e.png)
 ![gitsync4](https://user-images.githubusercontent.com/32688387/225042554-14ece648-adc8-4d3e-ae7f-1ebb4fe94f06.png)
 
+## 📘 Documentation
 
-## Requirements
+- [Celery Setup Guide](docs/celery.md)
+- [API Reference](docs/api.md)
+- [Architecture Diagram](docs/architecture.png)
 
-To use this app, you will need:
+## ✅ Roadmap
 
-- Python 3.x
-- Django 3.x
-- Git
-- An SQL database (e.g. PostgreSQL)
+- Add periodic sync with Celery Beat
+- Webhook support from GitHub
+- Frontend dashboard for repo insights
 
-## Installation
+## 👤 Author
 
-1. Clone the repository:
+- [@egenius01](https://github.com/egenius01)
 
-`git clone https://github.com/your_username/gitsynchub.git`
-
-
-2. Install the required packages:
-
-`pip install -r requirements.txt`
-
-3. Run the migrations:
-
-`python manage.py migrate`
-
-4. Start the development server:
-
-`python manage.py runserver`
-
-5. Access the app in your web browser at `http://localhost:8000/.`
-
-## Usage
-
-1. Enter the GitHub repository URL in the input field.
-2. Click the "Clone and Save" button.
-3. Wait for the app to clone the repository and save its JSON data to the SQL database.
-4. Check the SQL database to ensure that the JSON data was saved correctly.
-
-## Example
-
-To clone the repository at https://github.com/octocat/hello-world and save its JSON data to an SQL database, enter the following URL in the input field:
-
-`https://github.com/octocat/hello-world.git`
-
-## Contributing
-
-Contributions are welcome! Please feel free to submit a pull request.
-
-## License
-
-This app is licensed under the MIT License.
-
----
